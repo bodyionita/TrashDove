@@ -93,7 +93,7 @@ function play()
 			$.ajax({
 			data: 0,
 			url: 'increaseGlobalCount.php',
-			method: 'GET', 
+			method: 'POST', 
 			success: function(msg) {
 				alert(msg);
 				}
