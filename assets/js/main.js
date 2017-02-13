@@ -62,6 +62,7 @@ function setup() {
   stage.addChild(gif);
   setInterval(getCount, 5000);
   setInterval(pushCount, 10000);
+  setInterval(resetTapped,1000);
   gameLoop();
   
 }
@@ -79,7 +80,10 @@ function gameLoop(){
 function play()
 {
 	if (remainingAnimationTime>0)
+	{
 		remainingAnimationTime--;
+		song.volume = song.volume - song.volume/5;
+	}	
 	
 	trashdove[currentFrame].visible = false;	
 	currentFrame = parseInt(remainingAnimationTime/4)  + 1;
@@ -89,9 +93,10 @@ function play()
 	{
 		if (tapped)
 		{
+			if (song.volume < 2) song.volume += 1;
 			tappedCount++;
 			tapped = 0;
-			jumpSound();
+			//jumpSound();
 			remainingAnimationTime = 12;
 			
 		}
@@ -117,6 +122,10 @@ function getCount()
 				totalCounter = value;
 				}
 			});
+}
+function resetTapped()
+{
+	tapped = 0;
 }
 function jumpSound() {
   soundEffect(
