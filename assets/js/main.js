@@ -126,7 +126,7 @@ function getCount()
 			url: 'assets/php/getGlobalCount.php',
 			method: 'POST', 
 			success: function(value) {
-				totalCounter = value;
+				totalCounter = parseInt(value);
 				}
 			});
 }
