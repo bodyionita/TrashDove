@@ -85,7 +85,8 @@ function gameLoop(){
 
 function play()
 {
-	song.volume = song.volume * 0.95;
+	if (song)
+		song.volume = song.volume * 0.95;
 	if (remainingAnimationTime>0)
 	{
 		remainingAnimationTime--;
@@ -100,7 +101,8 @@ function play()
 	{
 		if (tapped)
 		{
-			if (song.volume < 2) song.volume = 2;
+			if (song)
+				if (song.volume < 2) song.volume = 2;
 			tappedCount++;
 			tapped = 0;
 			//jumpSound();
