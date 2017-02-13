@@ -7,7 +7,7 @@
 
 	<title>TrashDove</title>
 	<link rel="stylesheet" href="index.css">
-	<link rel='shortcut icon' href='assets/GNG-favicon.png' type='image/x-icon'/ >
+	<link rel='shortcut icon' href='assets/img/favicon.ico' type='image/x-icon'/ >
 	<link href="https://fonts.googleapis.com/css?family=Catamaran:400,700" rel="stylesheet">
 	<script src="https://apis.google.com/js/platform.js" async defer>
 	  {lang: 'en-GB'}
@@ -21,11 +21,33 @@
 	
 	<div id="container">
 
+		<br><h2 align="center">Slam the dove!!!</h2>
+
+		<img id="main" src="assets/img/trashdove1.png">
+
+		<br><br><h3 id="counter" align="center">The dove was hit <b>0</b> times so far!</h3>
+
 	</div>
 
     <script type="text/javascript">
-
+    	var img1, img2, count=0;
+    	$(document).ready(function(){
+    		img1 = new Image();
+    		img1.src = 'assets/img/trashdove1.png';
+    		img2 = new Image();
+    		img2.src = 'assets/img/trashdove.gif';
+    	});
        
+    	$("#main").click(function(){
+    		$(this).attr('src', img2.src);
+    		count++;
+    		$("body").off("click", "#main", function(){});
+    		document.getElementById('counter').innerHTML = 'The dove was hit <b>'+count+'</b> times so far!</h3>';
+    		setTimeout(function(){
+    			$('#main').attr('src', img1.src);
+    			$("body").on("click", "#main", function(){});
+    		}, 200);
+    	});
 
     </script>
 </body>
