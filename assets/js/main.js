@@ -131,7 +131,7 @@ function pushCount()
 			url: 'assets/php/increaseGlobalCount.php',
 			method: 'POST'
 			});
-	tappedCount = 0;
+	
 }
 
 function getCount()
@@ -145,6 +145,8 @@ function getCount()
 				totalCounter = parseInt(value);
 				}
 			});
+	tappedCount = 0;
+			
 }
 function resetTapped()
 {
