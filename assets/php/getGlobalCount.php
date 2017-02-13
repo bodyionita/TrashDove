@@ -4,9 +4,9 @@
 	if($conn->connect_errno)$ans =  'There was a problem with connecting to our server. Please, try again!';
 	else{
 			$query="SELECT * FROM counters WHERE name='globalCounter'";
-			$results = $conn->query($query);
-			foreach ($results as $result)
-				echo $result['value'];
+			$result =$conn->query($query);
+			while ($row=$result->fetch_assoc())
+				echo $row['value'];
 	}
 	
 ?>

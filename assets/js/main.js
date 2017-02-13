@@ -22,7 +22,7 @@ var gif = new PIXI.Container();
 var currentFrame = 1;
 var song;
 var soundVolume=1, musicVolume=1;
-var globalCounterContainer = new PIXI.Text("Clicks:"+(totalCounter+tappedCount),
+var globalCounterContainer = new PIXI.Text("",
   {fontFamily: "Arial", fontSize: 32, fill: "white"}
 );
 
@@ -43,11 +43,6 @@ sounds.load([
 	"assets/sound/song.mp3"
 ]);
 
-sounds.whenLoaded = function (){
-  song = sounds["assets/sound/song.mp3"];
-  song.loop = true;
-  song.play();
-}
 
 
   
@@ -62,8 +57,13 @@ function setup() {
 	trashdove[i].visible = false;
 	gif.addChild(trashdove[i]);
   }
-  
+  sounds.whenLoaded = function (){
+	  song = sounds["assets/sound/song.mp3"];
+	  song.loop = true;
+	  song.play();
+  }
   stage.addChild(gif);
+  getCount();
   setInterval(getCount, 5000);
   setInterval(pushCount, 10000);
   setInterval(resetTapped,1000);
@@ -79,15 +79,17 @@ function gameLoop(){
   gif.x=window.innerWidth/2 - gif.width/2;
   gif.y=window.innerHeight/2- gif.height/2;
   globalCounterContainer.text = "Clicks:"+(totalCounter+tappedCount);
+  stage.addChild(globalCounterContainer);
   renderer.render(stage);
 }
 
 function play()
 {
+	song.volume = song.volume * 0.95;
 	if (remainingAnimationTime>0)
 	{
 		remainingAnimationTime--;
-		song.volume = song.volume - song.volume/10;
+		
 	}	
 	
 	trashdove[currentFrame].visible = false;	
