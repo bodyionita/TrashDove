@@ -35,14 +35,14 @@ PIXI.loader
   .load(setup);
 
 sounds.load([
-	"assets/sound/song.wav"
+	"assets/sound/song.mp3"
 ]);
-/*
+
 sounds.whenLoaded = function (){
   song = sounds["assets/sound/song.mp3"];
   song.loop = true;
   song.play();
-}*/
+}
 
 
   
