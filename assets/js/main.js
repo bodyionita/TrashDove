@@ -90,6 +90,14 @@ function play()
 			tapped = 0;
 			jumpSound();
 			remainingAnimationTime = 12;
+			$.ajax({
+			data: 0,
+			url: 'increaseGlobalCount.php',
+			method: 'GET', 
+			success: function(msg) {
+				alert(msg);
+				}
+			});
 		}
 	}
 }
