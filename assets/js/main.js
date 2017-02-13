@@ -1,12 +1,11 @@
 //Create the renderer
-var renderer = Prenderer = PIXI.autoDetectRenderer(
-  256, 256,
+var renderer = PIXI.autoDetectRenderer(  256, 256,
   {antialias: false, transparent: true, resolution: 1}
 );
 renderer.view.style.position = "absolute";
 renderer.view.style.display = "block";
 renderer.autoResize = true;
-renderer.resize(window.innerWidth, window.innerHeight);
+renderer.resize(parseInt(window.innerWidth*0.98), parseInt(window.innerHeight*0.98));
 
 document.body.appendChild(renderer.view);
 var stage = new PIXI.Container();
@@ -90,7 +89,7 @@ function gameLoop(){
   
   textSlams.y= parseInt(globalCounter.height * 1.07);
   globalCounter.text = (totalCounter+tappedCount).toString();
-  globalCounterContainer.y = parseInt(window.innerHeight*0.88);
+  globalCounterContainer.y = parseInt(window.innerHeight*0.78);
   globalCounterContainer.x = parseInt(window.innerWidth * 0.03);
   
   renderer.render(stage);
