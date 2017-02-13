@@ -1,55 +1,21 @@
+<!doctype html>
 <html>
-
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>TrashDove</title>
-	<link rel="stylesheet" href="assets/css/index.css">
-	<link rel='shortcut icon' href='assets/img/favicon.ico' type='image/x-icon'/ >
-	<link href="https://fonts.googleapis.com/css?family=Catamaran:400,700" rel="stylesheet">
-	<script src="https://apis.google.com/js/platform.js" async defer>
-	  {lang: 'en-GB'}
-	</script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <meta charset="utf-8">
+  <title>Slam the Dove</title>
+  <link rel="stylesheet" href="assets/css/index2.css">
+  <link rel='shortcut icon' href='assets/img/favicon.ico' type='image/x-icon'/ >
+  
+  <script src="assets/js/pixi.min.js"></script>
+  <script src="assets/js/tink.js"></script>
+  <script src="assets/js/sound.js"></script>
+  
+  
+  
 </head>
-
 <body>
+  
 	
-	<div id="container">
-
-		<br><h2 align="center">Slam the dove!!!</h2>
-
-		<img id="main" src="assets/img/trashdove1.png">
-
-		<br><br><h3 id="counter" align="center">The dove was hit <b>0</b> times so far!</h3>
-
-	</div>
-
-    <script type="text/javascript">
-    	var img1, img2, count=0;
-    	$(document).ready(function(){
-    		img1 = new Image();
-    		img1.src = 'assets/img/trashdove1.png';
-    		img2 = new Image();
-    		img2.src = 'assets/img/trashdove.gif';
-    	});
-       
-    	$("#main").click(function(){
-    		$(this).attr('src', img2.src);
-    		count++;
-    		$("body").off("click", "#main", function(){});
-    		document.getElementById('counter').innerHTML = 'The dove was hit <b>'+count+'</b> times so far!</h3>';
-    		setTimeout(function(){
-    			$('#main').attr('src', img1.src);
-    			$("body").on("click", "#main", function(){});
-    		}, 300);
-    	});
-
-    </script>
+	<script src="assets/js/main.js"></script>
 </body>
-
 </html>
