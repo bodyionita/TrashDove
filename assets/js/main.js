@@ -72,8 +72,7 @@ function setup() {
   stage.addChild(gif);  
   stage.addChild(globalCounterContainer);
   getCount();
-  setInterval(getCount, 5000);
-  setInterval(pushCount, 10000);
+  setInterval(getCount, 10000);
   setInterval(resetTapped,1000);
   gameLoop();
   
@@ -137,6 +136,7 @@ function pushCount()
 
 function getCount()
 {
+	pushCount();
 	$.ajax({
 			data: {count: tappedCount},
 			url: 'assets/php/getGlobalCount.php',
