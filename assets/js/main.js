@@ -10,9 +10,16 @@ renderer.resize(parseInt(window.innerWidth*0.98), parseInt(window.innerHeight*0.
 document.body.appendChild(renderer.view);
 var stage = new PIXI.Container();
 var globalCounterContainer = new PIXI.Container();
+var nameContainer = new PIXI.Container();
+var trashText = new PIXI.Text("TRASH",
+  {fontFamily: "Arial Black", fontSize: 70, fill: "cyan"});
+var doveText = new PIXI.Text("DOVE",
+  {fontFamily: "Arial Black", fontSize: 70, fill: "red"});
+var orgText = new PIXI.Text(".ORG",
+  {fontFamily: "Arial Black", fontSize: 70, fill: "white"});
 var tink = new Tink(PIXI, renderer.view);
 var pointer = tink.makePointer();
-var trashdove =  new Array();;
+var trashdove =  new Array();
 var state = play;
 var remainingAnimationTime = 0;
 var tapped = 0;
@@ -65,11 +72,14 @@ function setup() {
 	  song.loop = true;
 	  song.play();
   }
-  
+  nameContainer.addChild(trashText);
+  nameContainer.addChild(doveText);
+  nameContainer.addChild(orgText);
   globalCounterContainer.addChild(globalCounter);
   globalCounterContainer.addChild(textSlams);
   stage.addChild(gif);  
   stage.addChild(globalCounterContainer);
+  stage.addChild(nameContainer);
   getCount();
   setInterval(getCount, 10000);
   setInterval(resetTapped,1000);
@@ -85,10 +95,14 @@ function gameLoop(){
 
   gif.x=window.innerWidth/2 - gif.width/2;
   gif.y=window.innerHeight/2- gif.height/2;
-  
+  doveText.x = parseInt(trashText.width * 1.05);
+  orgText.x = parseInt(doveText.x+ doveText.width * 1.05);
   
   textSlams.y= parseInt(globalCounter.height * 1.07);
   globalCounter.text = (totalCounter+tappedCount).toString();
+  nameContainer.y = parseInt(window.innerHeight*0.1);
+  nameContainer.x = parseInt((window.innerWidth - nameContainer.width)/2);
+  
   globalCounterContainer.y = parseInt(window.innerHeight*0.78);
   globalCounterContainer.x = parseInt(window.innerWidth * 0.03);
   
