@@ -81,7 +81,8 @@ function setup() {
   stage.addChild(globalCounterContainer);
   stage.addChild(nameContainer);
   getCount();
-  setInterval(getCount, 10000);
+  setInterval(getCount, 30000);
+  setInterval(pushCount, 10000);
   setInterval(resetTapped,1000);
   gameLoop();
   
