@@ -9,7 +9,6 @@ renderer.autoResize = true;
 renderer.resize(window.innerWidth, window.innerHeight);
 
 document.body.appendChild(renderer.view);
-var timesPressed = 0;
 var stage = new PIXI.Container();
 var tink = new Tink(PIXI, renderer.view);
 var pointer = tink.makePointer();
@@ -17,6 +16,8 @@ var trashdove =  new Array();;
 var state = play;
 var remainingAnimationTime = 0;
 var tapped = 0;
+var tappedCount = 0;
+var totalCounter;
 var gif = new PIXI.Container();
 var currentFrame = 1;
 var song;
@@ -58,7 +59,9 @@ function setup() {
 	gif.addChild(trashdove[i]);
   }
   
-  stage.addChild(gif);  
+  stage.addChild(gif);
+  setInterval(getCount, 5000);
+  setInterval(pushCount, 10000);
   gameLoop();
   
 }
@@ -86,22 +89,35 @@ function play()
 	{
 		if (tapped)
 		{
-			timesPressed++;
+			tappedCount++;
 			tapped = 0;
 			jumpSound();
 			remainingAnimationTime = 12;
-			$.ajax({
-			data: 0,
-			url: 'increaseGlobalCount.php',
-			method: 'POST', 
-			success: function(msg) {
-				alert(msg);
-				}
-			});
+			
 		}
 	}
 }
+function pushCount()
+{
+	$.ajax({
+			data: {count: tappedCount},
+			url: 'assets/php/increaseGlobalCount.php',
+			method: 'POST'
+			});
+	tappedCount = 0;
+}
 
+function getCount()
+{
+	$.ajax({
+			data: {count: tappedCount},
+			url: 'assets/php/getGlobalCount.php',
+			method: 'POST', 
+			success: function(value) {
+				totalCounter = value;
+				}
+			});
+}
 function jumpSound() {
   soundEffect(
     523.25,       //frequency
