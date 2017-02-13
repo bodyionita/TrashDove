@@ -10,6 +10,7 @@ renderer.resize(window.innerWidth, window.innerHeight);
 
 document.body.appendChild(renderer.view);
 var stage = new PIXI.Container();
+var globalCounterContainer = new PIXI.Container();
 var tink = new Tink(PIXI, renderer.view);
 var pointer = tink.makePointer();
 var trashdove =  new Array();;
@@ -22,9 +23,12 @@ var gif = new PIXI.Container();
 var currentFrame = 1;
 var song;
 var soundVolume=1, musicVolume=1;
-var globalCounterContainer = new PIXI.Text("",
-  {fontFamily: "Arial", fontSize: 32, fill: "white"}
+var globalCounter = new PIXI.Text("",
+  {fontFamily: "Arial Black", fontSize: 60, fill: "white"}
 );
+var textSlams = new PIXI.Text("SLAMS",
+  {fontFamily: "Arial Black", fontSize: 60, fill: "grey"});
+  
 
 pointer.tap = () => tapped=1;
 
@@ -62,7 +66,11 @@ function setup() {
 	  song.loop = true;
 	  song.play();
   }
-  stage.addChild(gif);
+  
+  globalCounterContainer.addChild(globalCounter);
+  globalCounterContainer.addChild(textSlams);
+  stage.addChild(gif);  
+  stage.addChild(globalCounterContainer);
   getCount();
   setInterval(getCount, 5000);
   setInterval(pushCount, 10000);
@@ -76,10 +84,16 @@ function gameLoop(){
   requestAnimationFrame(gameLoop);
   tink.update();
   state();
+
   gif.x=window.innerWidth/2 - gif.width/2;
   gif.y=window.innerHeight/2- gif.height/2;
-  globalCounterContainer.text = "Clicks:"+(totalCounter+tappedCount);
-  stage.addChild(globalCounterContainer);
+  
+  
+  textSlams.y= parseInt(globalCounter.height * 1.07);
+  globalCounter.text = (totalCounter+tappedCount).toString();
+  globalCounterContainer.y = parseInt(window.innerHeight*0.88);
+  globalCounterContainer.x = parseInt(window.innerWidth * 0.03);
+  
   renderer.render(stage);
 }
 
