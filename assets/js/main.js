@@ -85,7 +85,7 @@ function create() {
 	song.play();
 	
 	getCount();
-    //getCountTimer = game.time.events.loop(5000, getCount);
+    getCountTimer = game.time.events.loop(30000, getCount);
 	pushCountTimer = game.time.events.loop(10000, pushCount);
 }
 
@@ -118,6 +118,7 @@ function pushCount()
 			url: 'assets/php/increaseGlobalCount.php',
 			method: 'POST',
 			success: function(data){
+				getCount();
 				recentTapped = 0;
 			}
 			});
@@ -134,13 +135,12 @@ function clickTrash()
 
 function getCount()
 {
-	pushCount();
 	$.ajax({
 			url: 'assets/php/getGlobalCount.php',
 			method: 'GET', 
 			success: function(value) {
 				globalCounter = parseInt(value);
-				
+					
 				}
 			});
 	
