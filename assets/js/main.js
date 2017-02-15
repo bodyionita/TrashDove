@@ -37,7 +37,7 @@ function spriteScale(object, scale)
 
 function create() {
 	game.physics.startSystem(Phaser.Physics.ARCADE);
-	game.stage.disableVisibilityChange = true;
+	//game.stage.disableVisibilityChange = true;
 	game.time.advancedTiming = true;
 	//game.time.desiredfps = 60;
 	
@@ -109,7 +109,7 @@ function update() {
 
 function render() {
 	globalCounterText.text = (globalCounter+recentTapped).toString();
-	//game.debug.text(game.time.fps || '--', 2, 14, "#00ff00");   
+	game.debug.text(game.time.fps || '--', 2, 14, "#00ff00");   
 }
 
 function pushCount()

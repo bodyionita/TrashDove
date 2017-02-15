@@ -28,7 +28,7 @@
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
-	$(document.body).bind('touchend', function (e) {		
+	$(document.body).one('touchend', function (e) {		
 			document.getElementById('song1').play();
 			document.getElementById('song1').pause();
 			document.getElementById('song2').play();
