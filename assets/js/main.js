@@ -81,8 +81,8 @@ function setup() {
   stage.addChild(globalCounterContainer);
   stage.addChild(nameContainer);
   getCount();
-  setInterval(getCount, 30000);
-  setInterval(pushCount, 10000);
+  setInterval(getCount, 5300);
+  setInterval(pushCount, 13700);
   setInterval(resetTapped,1000);
   gameLoop();
   
@@ -157,9 +157,10 @@ function getCount()
 			method: 'POST', 
 			success: function(value) {
 				totalCounter = parseInt(value);
+				tappedCount = 0;
 				}
 			});
-	tappedCount = 0;
+	
 			
 }
 function resetTapped()
