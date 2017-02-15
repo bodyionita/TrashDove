@@ -1,7 +1,9 @@
 var game = new Phaser.Game('100', '100', Phaser.AUTO, 'gameContainer', 
 						   { preload: preload, create: create, update: update, render: render}, 
 						   true);
-						   
+			
+var muted;
+			
 var getCountTimer, pushCountTimer;
 
 var socialMediaGroup;
@@ -141,16 +143,17 @@ function render() {
 function achievementReset(){
 	titleGroup.setAll('visible', false);
 	globalCounterGroup.setAll('visible', false);
-	song.mute = true;
+	muted = true;
+	song.volume = 0;
 }
 
 function achievementIterate(){
-	if (player.clicks > 10) trashText.visible = true;
-	if (player.clicks > 20) doveText.visible = true;
-	if (player.clicks > 50) orgText.visible = true;
-	if (player.clicks > 80) globalCounterText.visible = true;
-	if (player.clicks > 100) slamsText.visible = true;
-	if (player.clicks > 5) song.mute = false;
+	if (player.clicks >= 10) trashText.visible = true;
+	if (player.clicks >= 20) doveText.visible = true;
+	if (player.clicks >= 50) orgText.visible = true;
+	if (player.clicks >= 80) globalCounterText.visible = true;
+	if (player.clicks >= 100) slamsText.visible = true;
+	if (player.clicks >= 5) muted = false;
 }
 
 function spriteScale(object, scale)
@@ -167,7 +170,7 @@ function clickTrash()
 	throwCoin();
 	animationRemainingTime =  12;
 	trashdove.animations.play('slam');
-	song.volume = 2;
+	if (!muted) song.volume = 2;
 	achievementIterate();
 }
 
