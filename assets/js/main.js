@@ -2,7 +2,7 @@ var game = new Phaser.Game('100', '100', Phaser.AUTO, 'gameContainer',
 						   { preload: preload, create: create, update: update, render: render}, 
 						   true);
 
-
+var getCountTimer, pushCountTimer;
 
 var socialMediaGroup;
 
@@ -85,9 +85,8 @@ function create() {
 	song.play();
 	
 	getCount();
-    getCountTimer = game.time.events.loop(5000, getCount);
+    //getCountTimer = game.time.events.loop(5000, getCount);
 	pushCountTimer = game.time.events.loop(10000, pushCount);
-	resetTappedTimer = game.time.events.loop(1000, resetTapped);
 }
 
 function update() {
@@ -117,7 +116,10 @@ function pushCount()
 	$.ajax({
 			data: {count: recentTapped},
 			url: 'assets/php/increaseGlobalCount.php',
-			method: 'POST'
+			method: 'POST',
+			success: function(data){
+				recentTapped = 0;
+			}
 			});
 	
 }
@@ -138,13 +140,9 @@ function getCount()
 			method: 'GET', 
 			success: function(value) {
 				globalCounter = parseInt(value);
-				recentTapped = 0;
+				
 				}
 			});
 	
 			
-}
-function resetTapped()
-{
-	recentTapped = 0;
 }
