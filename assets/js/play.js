@@ -1,4 +1,5 @@
 var muted;
+var lastClick;
 			
 var getCountTimer, pushCountTimer;
 
@@ -103,6 +104,8 @@ var playState = {
 
 	update: function() 
 	{
+		
+		
 		if (animationRemainingTime==0) 
 		{		
 			trashdove.animations.stop();
@@ -156,11 +159,18 @@ var playState = {
 		player.clicks++;
 		player.gold++;
 		recentTapped++;
+		
 		playState.createNewCoin();
+		
 		game.world.bringToTop(trashdove);
+		
 		animationRemainingTime =  12;
 		trashdove.animations.play('slam');
+		
 		if (!muted) song.volume = 2;
+		if (game.time.now - lastClick > 5000) song.restart(null, null, 0);
+		lastClick = game.time.now;
+		
 		playState.achievementIterate();
 	},
 
