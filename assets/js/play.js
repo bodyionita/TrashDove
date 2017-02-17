@@ -1,3 +1,19 @@
+var achievements =
+{
+  "slams": {
+    "message": "<strong>Congratulations!</strong> Now you contribute to the global slams, along with the other haters",
+    "unlocked": false
+  },
+  "sound": {
+    "message": "<strong>Congratulations!</strong> You have reached your first milestone! Sound unlocked!",
+    "unlocked": false
+  },
+  "title": {
+    "message": "<strong>Great job!</strong> Now you see this pointless title!",
+    "unlocked": false
+  }
+};
+
 var muted;
 var lastClick;
 			
@@ -30,6 +46,8 @@ var player = {
 }
 
 var coins;
+
+var popup;
 
 var playState = {
 	create: function() 
@@ -132,26 +150,31 @@ var playState = {
 
 	achievementReset: function()
 	{
-		titleGroup.setAll('visible', false);
-		globalCounterGroup.setAll('visible', false);
+		titleGroup.visible = false;
+		globalCounterGroup.visible = false;
 		muted = true;
+		for (var key in achievements)
+			achievements[key].unlocked = false;
 	},
 
 	achievementIterate: function()
 	{
-		if (player.clicks >= 10) trashText.visible = true;
-		if (player.clicks >= 20) doveText.visible = true;
-		if (player.clicks >= 50) orgText.visible = true;
-		if (player.clicks >= 80) globalCounterText.visible = true;
-		if (player.clicks >= 100) slamsText.visible = true;
-		if (player.clicks >= 5) {muted = false; this.pnotify("Bravo","success");}
+		if (player.clicks >= 5 && !achievements['sound'].unlocked) {muted = false; this.pnotify('sound');}
+		if (player.clicks >= 40 && !achievements['title'].unlocked) {titleGroup.visible = true;this.pnotify('title');}
+		if (player.clicks >= 80 && !achievements['slams'].unlocked) {globalCounterGroup.visible = true;this.pnotify('slams');}
 	},
+	
 
-	pnotify: function(message, type)
+	pnotify: function(name)
 	{
-		$("#achievementBox").visibility="block";
-		$("#achievementBox p")[0].innerHTML = message;
-		$("#achievementBox").removeClass("alert-warning").addClass("alert-"+type);
+		achievements[name].unlocked = true;
+		$("#achievementBox").hide();
+		$("#achievementBox #textContainer")[0].innerHTML = achievements[name].message;		
+		$("#achievementBox").show();
+		$("#achievementBox")[0].style.marginLeft = ''+(window.innerWidth - $("#achievementBox")[0].clientWidth) / 2+'px';
+		window.setTimeout(function () { 
+                          $("#achievementBox").hide(); }, 2000);                  
+				
 	},
 
 	clickTrash: function()

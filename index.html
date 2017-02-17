@@ -6,30 +6,25 @@
   <link rel="stylesheet" href="assets/css/index.css">
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
   <link rel='shortcut icon' href='assets/img/favicon.ico' type='image/x-icon'/ >
   
   <script src="assets/js/phaser.js"></script> 
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-1348252189953441",
-    enable_page_level_ads: true
-  });
-</script>
+  
 </head>
 <body>
-	<div id="achievementBox" hidden class=" alert alert-warning" role="alert">
-		<!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		</button>-->
-		<p> </p>
+	<div id="achievementBox" hidden class=" alert alert-success	" role="alert" style="position:absolute;">
+		<i class="fa fa-trophy fa-3x fa-pull-left" aria-hidden="true"></i>
+		<div id="textContainer"> </div>
+		
 	</div>
-	<div id="gameContainer">
 	
+	<div id="gameContainer">	
 	</div>
-	<div id="adContainer">
 	
+	<div id="adContainer">	
 	</div>
+	
 	<div id="footer">
 		<audio  id="song1" src="assets/sound/sample.m4a" /></audio>
 		<audio  id="song2" src="assets/sound/sample.ogg" /></audio>
@@ -48,11 +43,23 @@
 	<script>
 	$(document.body).one('touchend', function (e) {		
 			document.getElementById('song1').play();
-			document.getElementById('song1').pause();
+			setTimeout('document.getElementById("song1").pause();', 5);
+			
 			document.getElementById('song2').play();
-			document.getElementById('song2').pause();
-		});
+			setTimeout('document.getElementById("song2").pause();', 5);
 
+		});
+	$(document).ready (function(){
+		$("#achievementBox").hide();
+		function showAchievementBox()
+		{
+			$("#achievementBox").show();
+			window.setTimeout(function () { 
+                            $("#success-alert").alert('close'); }, 2000);               
+                  
+		};
+	
+	});
 	</script>
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
