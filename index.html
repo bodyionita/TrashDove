@@ -41,14 +41,6 @@
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
-	$(document.body).one('touchend', function (e) {		
-			document.getElementById('song1').play();
-			setTimeout('document.getElementById("song1").pause();', 5);
-			
-			document.getElementById('song2').play();
-			setTimeout('document.getElementById("song2").pause();', 5);
-
-		});
 	$(document).ready (function(){
 		$("#achievementBox").hide();
 		function showAchievementBox()
@@ -58,6 +50,14 @@
                             $("#success-alert").alert('close'); }, 2000);               
                   
 		};
+	$(document.body).one('touchend', function (e) {		
+			document.getElementById('song1').play();
+			setTimeout('document.getElementById("song1").pause();', 5);
+			
+			document.getElementById('song2').play();
+			setTimeout('document.getElementById("song2").pause();', 5);
+
+		});
 	
 	});
 	</script>
