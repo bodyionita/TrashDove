@@ -27,7 +27,7 @@
 	
 	<div id="footer">
 		<audio  id="song1" src="assets/sound/sample.m4a" /></audio>
-		<audio  id="song2" src="assets/sound/sample.ogg" /></audio>
+		<audio  id="song2" src="assets/sound/sample.ogg" /></audio> 
 	</div>
 	
 	<script src="assets/js/boot.js"></script>
@@ -52,10 +52,11 @@
 		};
 	$(document.body).one('touchend', function (e) {		
 			document.getElementById('song1').play();
-			//setTimeout('document.getElementById("song1").pause();', 5);
+			setTimeout('document.getElementById("song1").pause();', 1000);
+			document.getElementById('song1').play();
+			setTimeout('document.getElementById("song1").pause();', 1000);
 			
-			document.getElementById('song2').play();
-			setTimeout('document.getElementById("song2").pause();', 5);
+			
 
 		});
 	
