@@ -52,9 +52,11 @@
 		};
 	$(document.body).one('touchend', function (e) {		
 			document.getElementById('song1').play();
-			setTimeout('document.getElementById("song1").pause();', 1000);
-			document.getElementById('song1').play();
-			setTimeout('document.getElementById("song2").pause();', 1000);
+			document.getElementById("song1").pause();
+			//setTimeout('document.getElementById("song1").pause();', 1000);
+			document.getElementById('song2').play();
+			document.getElementById('song2').pause();
+			//setTimeout('document.getElementById("song2").pause();', 1000);
 			
 			
 
