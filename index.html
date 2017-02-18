@@ -42,13 +42,16 @@
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
-	$(document.body).bind('touchend', function (e) {		
+	var alreadyDone = 0;
+	$(document.body).bind('touchend', function (e) {	
+		if (alreadyDone<2) {
 			document.getElementById('song3').play();
 			document.getElementById('song3').pause();
 			document.getElementById('song2').play();
 			document.getElementById('song2').pause();
 			document.getElementById('song1').play();
 			document.getElementById('song1').pause();
+			alreadyDone++;}
 		});
 
 	</script>
