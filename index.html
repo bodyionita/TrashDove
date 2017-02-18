@@ -28,6 +28,7 @@
 	<div id="footer">
 		<audio  id="song1" src="assets/sound/sample.ogg" /></audio> 
 		<audio  id="song2" src="assets/sound/sample.mp3" /></audio> 
+		<audio  id="song3" src="assets/sound/sample.m4a" /></audio> 
 	</div>
 	
 	<script src="assets/js/boot.js"></script>
@@ -37,9 +38,19 @@
 	<script src="assets/js/game.js"></script>
 	
 	
-	
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
+	<script>
+	$(document.body).bind('touchend', function (e) {		
+			document.getElementById('song3').play();
+			document.getElementById('song3').pause();
+			document.getElementById('song2').play();
+			document.getElementById('song2').pause();
+			document.getElementById('song1').play();
+			document.getElementById('song1').pause();
+		});
+
+	</script>
 	<script>
 	$(document).ready (function(){
 		$("#achievementBox").hide();
@@ -50,17 +61,6 @@
                             $("#success-alert").alert('close'); }, 2000);               
                   
 		};
-	$(document.body).one('touchend', function (e) {		
-			document.getElementById('song1').play();
-			document.getElementById("song1").pause();
-			//setTimeout('document.getElementById("song1").pause();', 1000);
-			document.getElementById('song2').play();
-			document.getElementById('song2').pause();
-			//setTimeout('document.getElementById("song2").pause();', 1000);
-			
-			
-
-		});
 	
 	});
 	</script>
